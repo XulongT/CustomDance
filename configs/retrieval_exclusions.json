@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0",
+  "excluded_phrases": [
+    {
+      "phrase_id": "FD_012_000000_000119",
+      "reason": "raw-to-v2 versus trusted legacy PKL root-rotation regression outlier"
+    },
+    {
+      "phrase_id": "FD_035_000129_000248",
+      "reason": "corrected-standing release phrase overlapping the reviewed raw 035 frame 121-240 root-rotation outlier"
+    }
+  ]
+}

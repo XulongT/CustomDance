@@ -1,0 +1,24 @@
+# Python 3.10. Install the CUDA PyTorch wheel before this file.
+torch==2.7.1
+numpy==1.23.5
+scipy==1.15.3
+einops==0.8.1
+librosa==0.11.0
+soundfile==0.13.1
+PyYAML==6.0.3
+fastapi==0.141.1
+uvicorn==0.52.1
+pydantic==2.13.4
+pydantic-settings==2.15.0
+python-multipart==0.0.32
+orjson==3.11.9
+httpx==0.28.1
+openai==2.54.0
+
+# Install CUDA extensions after PyTorch; see README.
+causal-conv1d==1.5.3.post1
+mamba-ssm==2.2.6.post3
+transformers==4.57.1
+smplx==0.1.28
+# Deserialize the official SMPL v1.1.0 PKL; install with --no-build-isolation.
+chumpy==0.70

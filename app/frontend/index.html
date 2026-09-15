@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark">
+    <title>CustomDance</title>
+    <link rel="stylesheet" href="/static/styles.css?v=0.1.1">
+  </head>
+  <body>
+    <svg class="icon-sprite" aria-hidden="true">
+      <symbol id="icon-upload" viewBox="0 0 24 24"><path d="M12 16V3m0 0 5 5m-5-5L7 8M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></symbol>
+      <symbol id="icon-spark" viewBox="0 0 24 24"><path d="m12 3-1.4 4.3a2 2 0 0 1-1.3 1.3L5 10l4.3 1.4a2 2 0 0 1 1.3 1.3L12 17l1.4-4.3a2 2 0 0 1 1.3-1.3L19 10l-4.3-1.4a2 2 0 0 1-1.3-1.3L12 3Z"/></symbol>
+      <symbol id="icon-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></symbol>
+      <symbol id="icon-play" viewBox="0 0 24 24"><path d="m8 5 11 7-11 7V5Z"/></symbol>
+      <symbol id="icon-pause" viewBox="0 0 24 24"><path d="M8 5v14m8-14v14"/></symbol>
+      <symbol id="icon-fill" viewBox="0 0 24 24"><path d="m4 14 8-8 6 6-8 8H4v-6Z"/><path d="m14 4 6 6"/></symbol>
+      <symbol id="icon-complete" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+      <symbol id="icon-fix" viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5-5L7 4l3 3-7.7 7.7a2.4 2.4 0 0 0 3.4 3.4L13.4 10l3 3 2.7-2.7a4 4 0 0 0-4.4-4Z"/></symbol>
+      <symbol id="icon-chart" viewBox="0 0 24 24"><path d="M4 19V9m6 10V5m6 14v-7m4 7H2"/></symbol>
+      <symbol id="icon-download" viewBox="0 0 24 24"><path d="M12 3v12m0 0 5-5m-5 5-5-5M4 19h16"/></symbol>
+      <symbol id="icon-stop" viewBox="0 0 24 24"><path d="M7 7h10v10H7z"/></symbol>
+      <symbol id="icon-chat" viewBox="0 0 24 24"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8Z"/></symbol>
+      <symbol id="icon-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+      <symbol id="icon-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+      <symbol id="icon-character" viewBox="0 0 24 24"><circle cx="12" cy="5" r="3"/><path d="M8 21v-5l-2-5 3-2h6l3 2-2 5v5m-7-5h6"/></symbol>
+      <symbol id="icon-reset" viewBox="0 0 24 24"><path d="M4 7v5h5M5.5 16a8 8 0 1 0 .5-9l-2 5"/></symbol>
+      <symbol id="icon-maximize" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M8 21H3v-5m13 5h5v-5"/></symbol>
+      <symbol id="icon-star" viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.6l6.2-.9L12 3Z"/></symbol>
+      <symbol id="icon-range" viewBox="0 0 24 24"><path d="M7 4H4v16h3M17 4h3v16h-3M9 8v8m6-8v8"/></symbol>
+    </svg>
+
+    <main class="app-shell">
+      <section class="edit-area" aria-label="CustomDance editor">
+        <aside class="left-dock" aria-label="Music analysis and motion preference">
+          <section class="panel music-panel" aria-labelledby="customdance-title">
+            <header class="panel-header">
+              <div class="brand-title">
+                <img src="/static/assets/customdance-icon.png" alt="" width="26" height="26">
+                <h1 id="customdance-title">CustomDance</h1>
+              </div>
+              <label class="compact-button import-button" for="music-file">
+                <svg class="icon"><use href="#icon-upload"/></svg>
+                Import Music
+              </label>
+              <input id="music-file" type="file" accept="audio/wav,.wav" hidden>
+            </header>
+            <div class="panel-body left-panel-body">
+              <div class="audio-summary" aria-live="polite">
+                <strong id="file-state">No music imported</strong>
+                <span id="audio-meta">WAV · 4–34 seconds · up to 20 MB</span>
+              </div>
+
+              <div class="field-group">
+                <label for="global-intent">Global Intent</label>
+                <textarea id="global-intent" rows="3" maxlength="2000" placeholder="Describe genre, energy, character, or movement direction"></textarea>
+              </div>
+
+              <div id="openai-controls" class="openai-controls">
+                <label class="consent-row" for="external-consent">
+                  <input id="external-consent" type="checkbox">
+                  <span>Allow this session to send music and intent text to OpenAI.</span>
+                </label>
+              </div>
+
+              <button id="analyze-button" class="button button--primary button--full" type="button" disabled>
+                <svg class="icon"><use href="#icon-spark"/></svg>
+                Analyze Music
+              </button>
+            </div>
+          </section>
+
+          <section class="panel preference-panel" aria-labelledby="preference-title">
+            <header class="panel-header">
+              <h2 id="preference-title">Motion Preference</h2>
+            </header>
+            <div class="panel-body preference-body">
+              <div class="slot-context-card">
+                <span>Phrase / Range</span>
+                <strong id="slot-context">Select a phrase slot</strong>
+              </div>
+              <div class="field-group candidate-intent-field">
+                <label for="motion-query">Local Intent <span id="motion-query-origin" class="intent-origin" hidden>Cue</span></label>
+                <textarea id="motion-query" rows="3" maxlength="2000" placeholder="Select a phrase slot first" disabled></textarea>
+              </div>
+              <button id="refresh-button" class="button button--primary button--full" type="button" disabled>
+                <svg class="icon"><use href="#icon-refresh"/></svg>
+                Refresh Motions
+              </button>
+            </div>
+          </section>
+        </aside>
+
+        <section id="viewport-panel" class="panel viewport-panel" aria-labelledby="viewport-title">
+          <header class="panel-header viewer-header">
+            <h2 id="viewport-title">3D Viewer</h2>
+            <div class="viewer-actions">
+              <div class="segmented-control" role="group" aria-label="Viewer representation">
+                <button id="view-character" class="viewer-mode" type="button" aria-pressed="false" disabled>
+                  <svg class="icon"><use href="#icon-character"/></svg>
+                  SMPL Body
+                </button>
+              </div>
+              <button id="reset-camera" class="compact-button" type="button">
+                <svg class="icon"><use href="#icon-reset"/></svg>
+                Reset Camera
+              </button>
+              <button id="viewer-maximize" class="icon-button" type="button" aria-label="Maximize 3D Viewer" aria-pressed="false">
+                <svg class="icon"><use href="#icon-maximize"/></svg>
+              </button>
+            </div>
+          </header>
+          <div id="stage-shell" class="canvas-shell" tabindex="0" aria-label="Interactive SMPL 3D motion viewer">
+            <div id="stage-canvas" class="stage-canvas"></div>
+            <p id="stage-empty" class="stage-empty">Motion preview will appear here</p>
+            <span id="viewer-status" class="viewer-status stage-status" role="status" aria-live="polite">Checking required Neutral SMPL resource…</span>
+            <button id="stop-preview" class="stage-preview-stop" type="button" aria-label="Stop candidate preview" hidden>
+              <svg class="icon"><use href="#icon-stop"/></svg>
+              Exit Preview
+            </button>
+            <div class="stage-overlay stage-overlay--bottom">
+              <span id="preview-label">Current choreography</span>
+              <span id="stage-time">00:00.000</span>
+              <span>Perspective · World Space</span>
+            </div>
+          </div>
+        </section>
+
+        <aside class="panel right-dock" aria-label="Motion candidates and repair">
+          <div class="right-tabs" role="tablist" aria-label="Right dock panels">
+            <button id="candidates-tab" class="right-tab" type="button" role="tab" aria-selected="true" aria-controls="candidates-view">Candidates</button>
+            <button id="repair-tab" class="right-tab" type="button" role="tab" aria-selected="false" aria-controls="repair-view" disabled>Repair</button>
+          </div>
+
+          <section id="candidates-view" class="right-view candidate-view" role="tabpanel" aria-labelledby="candidates-tab">
+            <header class="candidate-toolbar">
+              <h2 id="motion-title">Motion Candidates</h2>
+              <fieldset class="top-k-group">
+                <legend>Top K</legend>
+                <label><input type="radio" name="top-k" value="5"><span>5</span></label>
+                <label><input type="radio" name="top-k" value="10" checked><span>10</span></label>
+                <label><input type="radio" name="top-k" value="15"><span>15</span></label>
+              </fieldset>
+            </header>
+            <output id="result-count" class="visually-hidden" aria-live="polite">0 candidates</output>
+            <div id="motion-list" class="motion-list" aria-live="polite">
+              <p class="empty-state">Select a phrase slot and refresh to retrieve local motion candidates.</p>
+            </div>
+          </section>
+
+          <section id="repair-view" class="right-view repair-view" role="tabpanel" aria-labelledby="repair-tab" hidden>
+            <div class="repair-section">
+              <h3>Diagnostic Signal</h3>
+              <div class="signal-switch" role="group" aria-label="Timeline diagnostic signal visibility">
+                <button type="button" data-diagnostic-signal="ake" aria-pressed="true"><span class="signal-dot signal-dot--ake"></span>AKE Curve</button>
+                <button type="button" data-diagnostic-signal="rke" aria-pressed="true"><span class="signal-dot signal-dot--rke"></span>RKE Curve</button>
+              </div>
+            </div>
+
+            <div class="repair-section repair-targets">
+              <div class="repair-section-heading">
+                <h3>Joint Groups</h3>
+                <span>Multi-select</span>
+              </div>
+              <div class="body-selector" role="group" aria-label="Select SMPL-24 joint groups">
+                <button class="body-part" type="button" data-joint-group="head" aria-label="Head joint group" aria-pressed="false">
+                  <img src="/static/assets/repair/head.png" data-base-src="/static/assets/repair/head.png" data-selected-src="/static/assets/repair/head-selected.png" alt="">
+                </button>
+                <button class="body-part" type="button" data-joint-group="torso" aria-label="Torso joint group" aria-pressed="false">
+                  <img src="/static/assets/repair/torso.png" data-base-src="/static/assets/repair/torso.png" data-selected-src="/static/assets/repair/torso-selected.png" alt="">
+                </button>
+                <button class="body-part" type="button" data-joint-group="right_arm" aria-label="Right arm joint group" aria-pressed="false">
+                  <img src="/static/assets/repair/right-arm.png" data-base-src="/static/assets/repair/right-arm.png" data-selected-src="/static/assets/repair/right-arm-selected.png" alt="">
+                </button>
+                <button class="body-part" type="button" data-joint-group="left_arm" aria-label="Left arm joint group" aria-pressed="false">
+                  <img src="/static/assets/repair/left-arm.png" data-base-src="/static/assets/repair/left-arm.png" data-selected-src="/static/assets/repair/left-arm-selected.png" alt="">
+                </button>
+                <button class="body-part" type="button" data-joint-group="right_leg" aria-label="Right leg joint group" aria-pressed="false">
+                  <img src="/static/assets/repair/right-leg.png" data-base-src="/static/assets/repair/right-leg.png" data-selected-src="/static/assets/repair/right-leg-selected.png" alt="">
+                </button>
+                <button class="body-part" type="button" data-joint-group="left_leg" aria-label="Left leg joint group" aria-pressed="false">
+                  <img src="/static/assets/repair/left-leg.png" data-base-src="/static/assets/repair/left-leg.png" data-selected-src="/static/assets/repair/left-leg-selected.png" alt="">
+                </button>
+              </div>
+              <output id="fix-selection-status" class="repair-range" aria-live="polite">Activate range selection and choose frames on the Timeline.</output>
+              <div id="fix-range" class="repair-actions">
+                <button id="smooth-button" class="button" type="button" disabled>Smooth</button>
+                <button id="remake-button" class="button" type="button" disabled>Remake</button>
+              </div>
+              <p id="repair-guidance" class="repair-guidance">Select a joint group.</p>
+            </div>
+          </section>
+        </aside>
+      </section>
+
+      <section id="timeline-panel" class="panel timeline-panel" aria-labelledby="timeline-title">
+        <h2 id="timeline-title" class="visually-hidden">Timeline</h2>
+        <div class="timeline-toolbar">
+          <div class="timeline-toolbar-group timeline-toolbar-left" aria-label="Timeline actions">
+            <button id="complete-button" class="toolbar-button" type="button" disabled><svg class="icon"><use href="#icon-complete"/></svg><span>Complete</span></button>
+            <button id="diagnose-button" class="toolbar-button" type="button" disabled><svg class="icon"><use href="#icon-chart"/></svg><span>Diagnose</span></button>
+            <button id="fix-toggle" class="toolbar-button" type="button" aria-pressed="false" disabled><svg class="icon"><use href="#icon-fix"/></svg><span>Repair</span></button>
+            <button id="export-pkl" class="toolbar-button" type="button" disabled><svg class="icon"><use href="#icon-download"/></svg><span>PKL</span></button>
+          </div>
+
+          <div class="timeline-toolbar-group timeline-toolbar-center" aria-label="Timeline playback controls">
+            <button id="timeline-reset" class="toolbar-button icon-only" type="button" aria-label="Reset playback" disabled><svg class="icon"><use href="#icon-reset"/></svg></button>
+            <button id="play-button" class="toolbar-button icon-only" type="button" aria-label="Play" disabled><svg class="icon"><use href="#icon-play"/></svg></button>
+            <button id="pause-button" class="toolbar-button icon-only" type="button" aria-label="Pause" disabled><svg class="icon"><use href="#icon-pause"/></svg></button>
+            <label class="playback-rate-field" for="playback-speed">
+              <span class="visually-hidden">Playback speed</span>
+              <select id="playback-speed" aria-describedby="playback-audio-state">
+                <option value="0.5">0.5×</option>
+                <option value="1" selected>1×</option>
+                <option value="1.5">1.5×</option>
+                <option value="2">2×</option>
+              </select>
+              <small id="playback-audio-state">Music</small>
+            </label>
+          </div>
+
+          <div class="timeline-toolbar-group timeline-toolbar-right" aria-label="Timeline navigation and range selection">
+            <button id="zoom-out" class="toolbar-button icon-only" type="button" aria-label="Show a longer timeline range"><svg class="icon"><use href="#icon-minus"/></svg></button>
+            <button id="range-select-toggle" class="toolbar-button icon-only" type="button" aria-label="Activate range selection" aria-pressed="false" disabled><svg class="icon"><use href="#icon-range"/></svg></button>
+            <button id="zoom-in" class="toolbar-button icon-only" type="button" aria-label="Show a shorter timeline range"><svg class="icon"><use href="#icon-plus"/></svg></button>
+            <input id="timeline-zoom-slider" class="timeline-zoom-slider" type="range" min="0" max="3" step="1" value="1" aria-label="Timeline viewport duration">
+            <output id="zoom-duration-label" class="zoom-duration-label">32 s</output>
+            <label class="frame-field"><span>Current</span><input id="current-frame" type="number" min="0" max="0" value="0" disabled></label>
+            <label class="frame-field"><span>Start</span><input id="start-frame" type="number" min="0" max="0" value="0" disabled></label>
+            <label class="frame-field"><span>End</span><input id="end-frame" type="number" min="1" max="1" value="1" disabled></label>
+          </div>
+        </div>
+
+        <audio id="audio-player" preload="metadata" hidden></audio>
+        <div class="timeline-tracks">
+          <div id="timeline-labels" class="timeline-labels" aria-hidden="true">
+            <div class="track-label track-label--ruler">30 FPS</div>
+            <div class="track-label">Phrase Slots</div>
+            <div class="track-label diagnostic-track-label"><strong>Diagnostics</strong><span>AKE · RKE</span></div>
+          </div>
+          <div id="timeline-shell" class="timeline-shell">
+            <div id="timeline-content" class="timeline-content">
+              <div id="time-ruler" class="time-ruler" aria-hidden="true"></div>
+              <div id="slot-track" class="slot-track" aria-label="Phrase slots">
+                <p class="empty-state">Analyze music to reveal four-second phrase slots.</p>
+              </div>
+              <div id="diagnostic-timeline" class="diagnostic-timeline">
+                <p id="diagnostic-empty" class="diagnostic-empty">Enter Repair, then run Diagnose to display AKE and RKE curves.</p>
+                <div id="diagnostic-legend" class="diagnostic-legend" aria-live="polite" hidden></div>
+                <canvas id="diagnostic-canvas" aria-label="AKE and RKE anomaly curves"></canvas>
+              </div>
+              <div id="timeline-selection" class="timeline-selection" hidden></div>
+              <div id="playhead" class="playhead" role="slider" tabindex="0" aria-label="Timeline playhead" aria-orientation="horizontal" aria-valuemin="0" aria-valuemax="0" aria-valuenow="0" aria-valuetext="Frame 0" hidden><span aria-hidden="true"></span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <section id="planning-chat" class="planning-chat" role="dialog" aria-modal="false" aria-labelledby="planning-chat-title" hidden>
+      <header class="planning-chat-header">
+        <h2 id="planning-chat-title">Planning Chat</h2>
+        <button id="planning-chat-close" class="icon-button" type="button" aria-label="Close Planning Chat"><svg class="icon"><use href="#icon-minus"/></svg></button>
+      </header>
+      <div id="message-log" class="message-log" role="log" aria-live="polite">
+        <article class="message message--system" data-message-key="onboarding"><span class="message-role">SYSTEM</span><p>Import music to begin.</p></article>
+      </div>
+    </section>
+
+    <button id="planning-chat-launcher" class="planning-chat-launcher" type="button" aria-label="Open Planning Chat" aria-controls="planning-chat" aria-expanded="false">
+      <svg class="icon"><use href="#icon-chat"/></svg>
+      <span id="planning-chat-unread" class="planning-chat-unread" aria-hidden="true" hidden>0</span>
+    </button>
+
+    <aside id="slot-description-popover" class="slot-description-popover" role="status" aria-live="polite" hidden>
+      <strong id="slot-description-title">Music phrase</strong>
+      <p id="slot-description-text"></p>
+    </aside>
+
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+    <script src="/static/vendor/three/three.min.js"></script>
+    <script src="/static/vendor/three/addons/controls/OrbitControls.js"></script>
+    <script src="/static/viewer-math.js?v=0.1"></script>
+    <script src="/static/transport-math.js?v=0.1"></script>
+    <script src="/static/diagnostic-view.js?v=0.1"></script>
+    <script src="/static/candidate-state.js?v=0.1"></script>
+    <script src="/static/app.js?v=0.1.1"></script>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+schema_version: "1.0"
+server:
+  host: 127.0.0.1
+  port: 8000
+  max_upload_mb: 20
+# Relative paths resolve against the repository root. These defaults also
+# appear in app/config.py, so environment overrides work when omitted here.
+assets: {}
+# Optional administrator-defined module:function factories.
+components: {}
+audio:
+  audio_model: gpt-audio-1.5
+  structured_model: gpt-5.6-luna
+  max_external_audio_mb: 20
+  max_external_duration_sec: 34

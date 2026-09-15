@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "assets": [
+    {
+      "asset_id": "inpainting-stage3-checkpoint",
+      "local_path": "${COMPLETER_CHECKPOINT}",
+      "kind": "file",
+      "required": true
+    },
+    {
+      "asset_id": "completer-condition-normalizer",
+      "local_path": "${COMPLETER_CONDITION_NORMALIZER}",
+      "kind": "file",
+      "required": true
+    },
+    {
+      "asset_id": "retriever-weights",
+      "local_path": "${MUSIC_TEXT_RETRIEVER_CHECKPOINT}",
+      "kind": "file",
+      "required": true
+    },
+    {
+      "asset_id": "retriever-index",
+      "local_path": "${MUSIC_TEXT_RETRIEVER_INDEX}",
+      "kind": "directory",
+      "required": true
+    },
+    {
+      "asset_id": "retriever-profile",
+      "local_path": "${RETRIEVAL_PROFILE}",
+      "kind": "file",
+      "required": true
+    },
+    {
+      "asset_id": "retrieval-exclusions",
+      "local_path": "${RETRIEVAL_EXCLUSIONS}",
+      "kind": "file",
+      "required": true
+    },
+    {
+      "asset_id": "motion-library",
+      "local_path": "${MOTION_LIBRARY_ROOT}",
+      "kind": "directory",
+      "required": true
+    },
+    {
+      "asset_id": "smpl-mesh",
+      "local_path": "${SMPL_MODEL_ROOT}",
+      "required": true,
+      "kind": "file"
+    },
+    {
+      "asset_id": "viewer",
+      "local_path": "app/frontend/vendor/three",
+      "kind": "directory",
+      "required": true
+    }
+  ]
+}

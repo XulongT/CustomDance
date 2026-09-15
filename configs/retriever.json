@@ -1,0 +1,9 @@
+{
+  "schema_version": "1.0",
+  "index_rows": 4982,
+  "source_count": 161,
+  "embedding_dim": 128,
+  "checkpoint_epoch": 500,
+  "text_weight": 0.75,
+  "music_weight": 0.25
+}
