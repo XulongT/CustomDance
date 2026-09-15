@@ -13,6 +13,10 @@
   </a>
 </p>
 
+<p align="center">
+  <video src="https://github.com/user-attachments/assets/5b32b027-38d1-41a8-bec8-4a6e23357bbf" width="100%" controls playsinline preload="metadata" aria-label="CustomDance demo video"></video>
+</p>
+
 > **Abstract**: With the rise of AI-generated content (AIGC) and advanced techniques for 3D human representation, the task of generating 3D dance movements has become an exciting area of research. Despite significant advancements, current methods often fail to provide comprehensive and distinct control over various multimodal inputs from users, such as music or specific descriptions of desired movements. As a result, the generated motions may be statistically plausible and technically correct, but they often lack depth, expressiveness, and alignment with the user's creative vision. To address this issue, we present CustomDance, a coarse-to-fine interactive system designed for customized 3D dance generation. Inspired by the workflows of expert choreographers, CustomDance introduces a novel paradigm to AI-assisted choreography through three interconnected stages. First, a multimodal Large Language Model (MLLM) analyzes the music and a high-level text prompt to identify key temporal anchors and creative cues for the piece. Next, for each anchor, a multimodal retriever suggests high-quality motion clips from a dance library based on local music and text, empowering the user with concrete and predictable options. Finally, a custom music-conditioned diffusion in-painter seamlessly connects the selected phrases, allowing for iterative, user-guided refinement of the final composition, supported by visualizations of motion dynamics.
 
 <p align="center"><strong>🎉 CustomDance has been accepted to SIGGRAPH Asia 2026! 🎉</strong></p>
