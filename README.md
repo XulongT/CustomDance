@@ -58,7 +58,7 @@ python -m pip install -e . --no-deps
 | [FineDance dataset](https://github.com/li-ronghui/FineDance#download-the-finedance-dataset) | `data/finedance/` |
 | [Joint Reference](https://raw.githubusercontent.com/li-ronghui/FineDance/0476cd42619e57fb6ec4840e81acaf7743b1507d/smplx_neu_J_1.npy) | `data/reference/smplx_neu_J_1.npy` |
 | [SMPL Model](https://smpl.is.tue.mpg.de/) | `assets/smpl/SMPL_NEUTRAL.pkl` |
-| [CustomDance Resources](https://drive.google.com/file/d/1M8nDNOsGWB7SfnlOR11taV7Sl7I7Q3Ve/view?usp=sharing) | `assets/runtime/` |
+| [CustomDance Resources](https://drive.google.com/file/d/1qgXu4XvDQ8T5aA9_gyoU-QFkzlwx_X3s/view?usp=sharing) | `assets/runtime/` |
 
 For SMPL, rename `basicmodel_neutral_lbs_10_207_0_v1.1.0.pkl` to `SMPL_NEUTRAL.pkl`.
 The CustomDance bundle includes `stage3_model.pt` (inpainting), `stage2_model.pt` (retriever),
